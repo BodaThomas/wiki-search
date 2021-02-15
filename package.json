@@ -36,8 +36,11 @@
     ]
   },
   "author": {
-    "name": "Thomas Boda", 
+    "name": "Thomas Boda",
     "email": "thomas.boda@epitech.eu",
     "url": "https://github.com/MrToto54"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
   }
 }
