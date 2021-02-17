@@ -1,26 +1,16 @@
 import React from 'react'
+import { Header } from '../components'
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            input: null
-        }
     }
 
     render() {
-        return(
+        return (
             <div className="App">
-                <h1>Wiki search</h1>
-                <form>
-                    <div>
-                        <input onChange={e => {this.setState({input: e.target.value})}}/>
-                    </div>
-                    <button>SEARCH</button>
-                </form>
-                <div>
-                    {this.state.input}
+                <div className="app-container">
+                    <Header/>
                 </div>
             </div>
         )
