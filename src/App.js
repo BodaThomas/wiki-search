@@ -9,6 +9,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path='/' component={Home}/>
+                    <Route exact path='/searchResults/' component={SearchResult}/>
                     <Route path='/searchResults/:query' component={SearchResult}/>
                 </Switch>
             </Router>

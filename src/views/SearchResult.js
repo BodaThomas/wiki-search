@@ -8,7 +8,6 @@ class SearchResult extends React.Component {
         super(props)
 
         this.state = {
-            input: null,
             title: null,
             description: null,
             extract: null,
@@ -19,17 +18,18 @@ class SearchResult extends React.Component {
     componentDidMount() {
         const { match: { params } } = this.props
 
-        this.setState({input: params.query})
-        API.get(`/page/summary/${params.query}`)
-            .then(res => res.data)
-            .then(json => {
-                console.log(json)
-                this.setState({title: json.titles.display, description: json.description, extract: json.extract, success: true})
-            })
-            .catch(error => {
-                console.log(error)
-                this.setState({success: false})
-            })
+        if (params.query !== undefined) {
+            API.get(`/page/summary/${params.query}`)
+                .then(res => res.data)
+                .then(json => {
+                    console.log(json)
+                    this.setState({title: json.titles.display, description: json.description, extract: json.extract, success: true})
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.setState({success: false})
+                })
+        }
     }
 
     render() {
@@ -37,16 +37,29 @@ class SearchResult extends React.Component {
             <div className="App">
                 <div className="app-container">
                     <Header title={this.state.title}/>
-                    <div>
-                        <h2>{this.state.title}</h2>
-                    </div>
-                    <div>
-                        <h3>{this.state.description}</h3>
-                    </div>
-                    <div>
-                        {this.state.extract}
-                    </div>
-                    <button className="like-button">LIKE</button>
+                    {this.state.success === true ?
+                        <div>
+                            <div>
+                                <h2>{this.state.title}</h2>
+                            </div>
+                            <div>
+                                <h3>{this.state.description}</h3>
+                            </div>
+                            <div>
+                                {this.state.extract}
+                            </div>
+                            <button className="like-button">LIKE</button>
+                        </div>
+                        : 
+                        <div>
+                            <div>
+                                <h2>Not found</h2>
+                            </div>
+                            <div>
+                                This page doesn&apos;t exist.
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         )
@@ -58,7 +71,7 @@ SearchResult.propTypes = {
         params: PropTypes.shape({
             query: PropTypes.string
         })
-    }),
+    })
 }
 
 export default SearchResult
