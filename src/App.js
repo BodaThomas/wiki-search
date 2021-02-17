@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Home } from './views'
+import { Home, SearchResult } from './views'
 
 class App extends React.Component {
     render() {
@@ -9,6 +9,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path='/' component={Home}/>
+                    <Route path='/searchResults/:query' component={SearchResult}/>
                 </Switch>
             </Router>
         )

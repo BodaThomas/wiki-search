@@ -1,5 +1,7 @@
 import Home from './Home'
+import SearchResult from './SearchResult'
 
 export {
-    Home
+    Home,
+    SearchResult
 }
