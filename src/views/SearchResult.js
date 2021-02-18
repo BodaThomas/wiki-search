@@ -39,6 +39,10 @@ class SearchResult extends React.Component {
                     <Header title={this.state.title}/>
                     {this.state.success === true ?
                         <div>
+                            <div className="divider">
+                                Results
+                                <hr/>
+                            </div>
                             <div>
                                 <h2>{this.state.title}</h2>
                             </div>
@@ -52,6 +56,9 @@ class SearchResult extends React.Component {
                         </div>
                         : 
                         <div>
+                            <div className="divider">
+                                <hr/>
+                            </div>
                             <div>
                                 <h2>Not found</h2>
                             </div>
