@@ -98,3 +98,9 @@ header {
   color: white;
   cursor: pointer
 }
+
+.back-link {
+  display: inline;
+  text-align: right;
+  font-size: smaller;
+}
