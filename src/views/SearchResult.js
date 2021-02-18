@@ -11,13 +11,22 @@ class SearchResult extends React.Component {
             title: null,
             description: null,
             extract: null,
-            success: null
+            success: null,
+            likesList: null
         }
     }
 
     componentDidMount() {
         const { match: { params } } = this.props
+        let likes = JSON.parse(localStorage.getItem('likes'))
 
+        if (likes === null) {
+            const emptyArray = []
+
+            likes = emptyArray
+            localStorage.setItem('likes', JSON.stringify(emptyArray))
+        }
+        this.setState({likesList: likes})
         if (params.query !== undefined) {
             API.get(`/page/summary/${params.query}`)
                 .then(res => res.data)
@@ -32,7 +41,30 @@ class SearchResult extends React.Component {
         }
     }
 
+    handleLike() {
+        let list = this.state.likesList
+
+        if (Array.isArray(list) && list.includes(this.state.title)) {
+            const valueIndex = list.indexOf(this.state.title)
+            
+            list.splice(valueIndex, 1)
+            localStorage.setItem('likes', JSON.stringify(list))
+            this.setState({likesList: list})
+        } else {
+            list.push(this.state.title)
+            localStorage.setItem('likes', JSON.stringify(list))
+            this.setState({likesList: list})
+        }
+    }
+
     render() {
+        let likeButtonClassName
+
+        if (Array.isArray(this.state.likesList) && this.state.likesList.includes(this.state.title)) {
+            likeButtonClassName = 'already-liked-button'
+        } else {
+            likeButtonClassName = 'like-button'
+        }
         return (
             <div className="App">
                 <div className="app-container">
@@ -52,7 +84,9 @@ class SearchResult extends React.Component {
                             <div>
                                 {this.state.extract}
                             </div>
-                            <button className="like-button">LIKE</button>
+                            <button className={likeButtonClassName} onClick={this.handleLike.bind(this)}>
+                                {likeButtonClassName === 'like-button' ? <div>LIKE</div> : <div>UNLIKE</div>}
+                            </button>
                         </div>
                         : 
                         <div>

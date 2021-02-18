@@ -7,6 +7,20 @@ class Liked extends React.Component {
     }
 
     render() {
+        const likedElements = JSON.parse(localStorage.getItem('likes'))
+        let likes = null
+
+        if (Array.isArray(likedElements) && likedElements.length) {
+            likes = <div>
+                {
+                    likedElements.map((item, i) => {return <div key={i}>- {item}</div>})
+                }
+            </div>
+        } else {
+            likes = <div>
+                You didn&apos;t liked anything
+            </div>
+        }
         return (
             <div className="App">
                 <div className="app-container">
@@ -17,6 +31,9 @@ class Liked extends React.Component {
                     <div className="divider">
                         Liked
                         <hr/>
+                    </div>
+                    <div className="liked-elements">
+                        {likes}
                     </div>
                 </div>
             </div>

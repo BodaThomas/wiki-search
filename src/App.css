@@ -91,6 +91,7 @@ header {
   border-radius: 3px;
   color: rgb(229, 10, 131);
   font-weight: bold;
+  outline: none;
 }
 
 .like-button:hover {
@@ -99,8 +100,30 @@ header {
   cursor: pointer
 }
 
+.already-liked-button {
+  height: 32px;
+  width: 100%;
+  margin-top: 16px;
+  background-color: rgb(229, 10, 131);
+  border: solid 1.7px rgb(229, 10, 131);
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  outline: none;
+}
+
+.already-liked-button:hover {
+  background-color: white;
+  color: rgb(229, 10, 131);
+  cursor: pointer
+}
+
 .back-link {
   display: inline;
   text-align: right;
   font-size: smaller;
+}
+
+.liked-elements {
+  font-weight: bold;
 }
