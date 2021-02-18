@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import API from '../api'
-import { Header } from '../components'
+import { Header, SearchBar } from '../components'
 
 class SearchResult extends React.Component {
     constructor(props) {
@@ -68,7 +68,8 @@ class SearchResult extends React.Component {
         return (
             <div className="App">
                 <div className="app-container">
-                    <Header title={this.state.title}/>
+                    <Header/>
+                    <SearchBar title={this.state.title}/>
                     {this.state.success === true ?
                         <div>
                             <div className="divider">

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '../components'
+import { Header, SearchBar } from '../components'
 
 class Home extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class Home extends React.Component {
             <div className="App">
                 <div className="app-container">
                     <Header/>
+                    <SearchBar/>
                 </div>
             </div>
         )
